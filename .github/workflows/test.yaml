@@ -1,0 +1,31 @@
+name: Test workflows
+run-name: Triggering test by ${{github.actor}}
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+# trigger when push on main branch and pull ..., below tests will be run
+
+jobs:
+  test:
+    name: Test TypeScript code
+    runs-on: "macos-latest"
+    steps:
+      # - uses: foo/bar # Githubs Actions
+      # - run: docker ps # Shell
+      # - uses: bar/baz
+      # - run: git rm
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npx jest
+      # uses
+      # run
+
+  # build:
+  #   runs-on: "ubuntu-latest"
+  # package:
+  #   runs-on: "windows-latest"
